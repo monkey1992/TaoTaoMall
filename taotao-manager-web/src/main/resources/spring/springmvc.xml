@@ -14,6 +14,10 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 由于我们在web.xml文件中定义的url拦截形式为“/”表示拦截所有的url请求，包括静态资源例如css、js等，所以需要在springmvc.xml中添加资源映射标签 -->
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+
     <!-- 引用dubbo服务 -->
     <dubbo:application name="taotao-manager-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.10.36:2181"/>
