@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+    <context:component-scan base-package="com.taotao.service"/>
+
+    <!-- 使用dubbo发布服务 -->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="taotao-manager"/>
+    <!-- IP地址是我们安装dubbo的虚拟机的IP地址 -->
+    <!-- 2181是zookeeper默认运行的端口号，即客户端连接服务端的端口号是2181 -->
+    <dubbo:registry protocol="zookeeper" address="192.168.10.36:2181"/>
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="com.taotao.service.ItemService" ref="itemServiceImpl"/>
+</beans>
