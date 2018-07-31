@@ -16,9 +16,10 @@
     <dubbo:application name="taotao-manager"/>
     <!-- IP地址是我们安装dubbo的虚拟机的IP地址 -->
     <!-- 2181是zookeeper默认运行的端口号，即客户端连接服务端的端口号是2181 -->
-    <dubbo:registry protocol="zookeeper" address="192.168.10.36:2181"/>
+    <dubbo:registry protocol="zookeeper" address="192.168.10.65:2181"/>
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880"/>
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.taotao.service.ItemService" ref="itemServiceImpl"/>
+    <dubbo:service interface="com.taotao.service.ItemService" ref="itemServiceImpl" timeout="300000"/>
+    <dubbo:service interface="com.taotao.service.ItemCatService" ref="itemCatServiceImpl" timeout="300000"/>
 </beans>
